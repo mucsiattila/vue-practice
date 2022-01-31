@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'home',
 
@@ -24,11 +25,11 @@ export default {
     }
   },
 
-  computed: {
-
-  },
 
   created() {
+    axios.get(process.env.VUE_APP_API_URL)
+      .then(response => this.tasks = response.data)
+      .catch(err => console.log(err))
 
   },
 
@@ -36,6 +37,9 @@ export default {
     changeCompleted(id) {
       let task = this.tasks.find(task => task.id == id)
       task.completed = !task.completed
+      axios.put(process.env.VUE_APP_API_URL, task)
+      .then(response => console.log(response.data))
+      .catch(err => console.log(err))
     },
   },
 }
