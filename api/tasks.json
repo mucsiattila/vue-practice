@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Első teszt feladat",
+    "completed": false,
+    "due": "2022-02-10"
+  },
+  {
+    "id": 2,
+    "name": "Második feladat",
+    "completed": true,
+    "due": "2022-02-15"
+  },
+  {
+    "id": 3,
+    "name": "Hármas feladat",
+    "completed": false,
+    "due": "2022-02-20"
+  },
+  {
+    "id": 4,
+    "name": "Négyes feladat",
+    "completed": false,
+    "due": "2022-02-25"
+  }
+]

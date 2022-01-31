@@ -20,33 +20,7 @@ export default {
 
   data() {
     return {
-      title: 'Ez a Home oldal',
-      tasks: [
-        {
-          id: 1,
-          name: 'Első teszt feladat',
-          completed: false,
-          due: '2022-02-10'
-        },
-        {
-          id: 2,
-          name: 'Második feladat',
-          completed: true,
-          due: '2022-02-15'
-        },
-        {
-          id: 3,
-          name: 'Hármas feladat',
-          completed: false,
-          due: '2022-02-20'
-        },
-        {
-          id: 4,
-          name: 'Négyes feladat',
-          completed: false,
-          due: '2022-02-25'
-        }
-      ],
+      tasks: [],
     }
   },
 
@@ -68,7 +42,43 @@ export default {
 </script>
 
 <style scoped>
-  .completed {
-    text-decoration: line-through;
-  }
+  
+h1 {
+  background: dodgerblue;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+li {
+  margin: 0 1rem;
+  padding: 1rem;
+  border-bottom:  1px solid dodgerblue;
+}
+
+li:hover {
+  background: dodgerblue;
+  color: white;
+  transition: .1s;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: dodgerblue;
+  border: 0;
+}
+
+.completed:hover {
+  background: white;
+  color: dodgerblue;
+}
+
 </style>
