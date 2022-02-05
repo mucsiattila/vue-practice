@@ -7,7 +7,13 @@
     </form>
     <div class="row">
       <div class="column small-12">
-        <i class="fi-check" @click="toggleCompleted" title="Kész feladatok elrejtése / mutatása"></i>
+        <div class="row">
+          <i class="fi-check column small-2" @click="toggleCompleted" title="Kész feladatok elrejtése / mutatása"></i>
+          <div class="column small-10 text-right">
+            <i class="fi-checkbox column small-4" title="Nyitott">{{open}}</i>
+            <i class="fi-flag column small-4" title="Lejárt">{{overdue}}</i>
+          </div>
+        </div>
       </div>
     </div>
     <ul>
@@ -53,6 +59,14 @@ export default {
     }
   },
 
+  computed: {
+    open : function() {
+      return this.tasks.filter(task => !task.completed).length
+    },
+    overdue : function() {
+      return this.tasks.filter(task => !task.completed && task.due < new Date().toISOString()).length
+    }
+  },
 
   created() {
     axios.get(process.env.VUE_APP_API_URL)
