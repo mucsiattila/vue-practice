@@ -22,7 +22,10 @@
           <span class="column small-1">
             <input @click="changeCompleted(task.id)" type = "checkbox" :checked = task.completed>
           </span>
-          <span class="column small-9">{{task.name}}</span>
+          <span class="column small-8">{{task.name}}</span>
+          <router-link :to="'/tasks/' + task.id" class="column small-1 text-right mini">
+            <i class="fi-eye"></i>
+          </router-link>
           <i class="fi-pencil column small-1 text-right mini"></i>
           <i class="fi-trash column small-1 text-right mini"></i>
         </div>
