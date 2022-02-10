@@ -68,14 +68,13 @@ export default {
     },
     overdue : function() {
       return this.tasks.filter(task => !task.completed && task.due < new Date().toISOString()).length
+    },
+    tasks: function() {
+      return this.$store.state.tasks
     }
   },
 
   created() {
-    axios.get(process.env.VUE_APP_API_URL)
-      .then(response => this.tasks = response.data)
-      .catch(err => console.log(err))
-
   },
 
   methods: {
