@@ -5,7 +5,9 @@ export default createStore({
   state: {
     tasks: [],
   },
-  getters: {},
+  getters: {
+    overdueTasks: state => state.tasks.filter(task => !task.completed && task.due < new Date().toISOString())
+  },
   mutations: {
     setTasks: (state, tasks) => state.tasks = tasks
   },

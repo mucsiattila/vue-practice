@@ -3,15 +3,15 @@
     <h1>Home</h1>
     <form class="row">
       <input type="text" v-model="task" placeholder="Add new task" class="column small-7">
-      <input type="date" @blur="addTask" v-model="due" class="column small-5">
+      <input type="date" @blur="addTask" v-model="due" class="column small-5" />
     </form>
     <div class="row">
       <div class="column small-12">
         <div class="row">
           <i class="fi-check column small-2" @click="toggleCompleted" title="Kész feladatok elrejtése / mutatása"></i>
           <div class="column small-10 text-right">
-            <i class="fi-checkbox column small-4" title="Nyitott">{{open}}</i>
-            <i class="fi-flag column small-4" title="Lejárt">{{overdue}}</i>
+            <i class="fi-checkbox column small-4" title="Nyitott">{{ open }}</i>
+            <i class="fi-flag column small-4" title="Lejárt">{{ overdueTasks.length }}</i>
           </div>
         </div>
       </div>
@@ -22,7 +22,7 @@
           <span class="column small-1">
             <input @click="changeCompleted(task.id)" type = "checkbox" :checked = task.completed>
           </span>
-          <span class="column small-8">{{task.name}}</span>
+          <span class="column small-8">{{ task.name }}</span>
           <router-link :to="'/tasks/' + task.id" class="column small-1 text-right mini">
             <i class="fi-eye"></i>
           </router-link>
@@ -32,11 +32,11 @@
         <div class="row mini">
           <span class="due column small-6">
             <i class="fi-flag"></i>
-            {{task.due}}
+            {{ task.due }}
           </span>
           <span :class="{created: task.created}" class="column small-6 text-right">
             <i class="fi-calendar"></i>
-            {{task.created}}
+            {{ task.created }}
           </span>
         </div>
       </li>
@@ -46,6 +46,8 @@
 
 <script>
 import axios from 'axios'
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'home',
 
@@ -57,24 +59,18 @@ export default {
     return {
       showCompleted : true,
       task : '',
-      tasks : [],
       due : (new Date((new Date).setDate((new Date).getDate() + 3))).toISOString().split('T')[0]
     }
   },
 
   computed: {
+    ...mapGetters(['overdueTasks']),
     open : function() {
       return this.tasks.filter(task => !task.completed).length
-    },
-    overdue : function() {
-      return this.tasks.filter(task => !task.completed && task.due < new Date().toISOString()).length
     },
     tasks: function() {
       return this.$store.state.tasks
     }
-  },
-
-  created() {
   },
 
   methods: {
