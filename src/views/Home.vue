@@ -26,7 +26,7 @@
           <router-link :to="'/tasks/' + task.id" class="column small-1 text-right mini">
             <i class="fi-eye"></i>
           </router-link>
-          <i class="fi-pencil column small-1 text-right mini"></i>
+          <i @click="edit(task.id)" class="fi-pencil column small-1 text-right mini"></i>
           <i class="fi-trash column small-1 text-right mini"></i>
         </div>
         <div class="row mini">
@@ -93,6 +93,11 @@ export default {
       axios.put(process.env.VUE_APP_API_URL, task)
         .then(response => console.log(response.data))
         .catch(err => console.log(err))
+    },
+    edit(id) {
+      let task = this.tasks.find(task => task.id == id)
+      this.task = task.name
+      this.due = task.due
     },
     toggleCompleted() {
       this.showCompleted = !this.showCompleted
