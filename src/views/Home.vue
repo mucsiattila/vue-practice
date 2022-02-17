@@ -26,8 +26,8 @@
           <router-link :to="'/tasks/' + task.id" class="column small-1 text-right mini">
             <i class="fi-eye"></i>
           </router-link>
-          <i @click="edit(task.id)" class="fi-pencil column small-1 text-right mini"></i>
-          <i class="fi-trash column small-1 text-right mini"></i>
+          <i @click="editTask(task.id)" class="fi-pencil column small-1 text-right mini"></i>
+          <i @click="deleteTask(task.id)" class="fi-trash column small-1 text-right mini"></i>
         </div>
         <div class="row mini">
           <span class="due column small-6">
@@ -94,13 +94,20 @@ export default {
         .then(response => console.log(response.data))
         .catch(err => console.log(err))
     },
-    edit(id) {
+    editTask(id) {
       let task = this.tasks.find(task => task.id == id)
       this.task = task.name
       this.due = task.due
     },
     toggleCompleted() {
       this.showCompleted = !this.showCompleted
+    },
+    deleteTask(id) {
+      let task = this.tasks.find(task => task.id == id)
+      console.log("Delete: " + task.id)
+      axios.delete(process.env.VUE_APP_API_URL, {data: task})
+        .then(response => console.log(response.data))
+        .catch(err => console.log(err))
     }
   },
 }
