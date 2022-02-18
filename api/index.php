@@ -32,30 +32,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
 
 if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
   $task = file_get_contents('php://input');
-  foreach($tasks as $i => $t) {
-    echo json_encode(($t));
-    echo "\n";
-  }
-  echo "------------------------------------------";
-  echo "\n";
   $task = json_decode($task);
   //melyik taskot töröljük
-  echo json_encode(($task));
   foreach($tasks as $i => $t) {
     if ($t -> id == $task -> id) {
-      echo json_encode(($tasks[$i]));
-      unset($tasks[$i]);
+      array_splice($tasks, $i, 1);
       break;
     }
   }
-  echo "------------------------------------------";
-  echo "\n";
-  foreach($tasks as $i => $t) {
-    echo json_encode(($t));
-    echo "\n";
-  }
   //írjuk felül
-  // file_put_contents('./tasks.json', json_encode($tasks));
+  file_put_contents('./tasks.json', json_encode($tasks));
+  echo json_encode(($tasks));
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

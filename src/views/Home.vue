@@ -106,7 +106,7 @@ export default {
       let task = this.tasks.find(task => task.id == id)
       console.log("Delete: " + task.id)
       axios.delete(process.env.VUE_APP_API_URL, {data: task})
-        .then(response => console.log(response.data))
+        .then(response => this.$store.state.tasks = response.data)
         .catch(err => console.log(err))
     }
   },
