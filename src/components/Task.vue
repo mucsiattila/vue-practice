@@ -61,15 +61,10 @@ export default {
   },
   methods: {
     changeCompleted() {
-      this.task.completed = !this.task.completed;
-      axios
-        .put(process.env.VUE_APP_API_URL, this.task)
-        .then((response) => console.log(response.data))
-        .catch((err) => console.log(err));
+      this.$emit("changeCompleted", this.task);
     },
     editTask() {
-      // this.task = task.name
-      // this.due = task.due
+      this.$emit("editIconClicked", this.task);
     },
     deleteTask() {
       console.log("Delete: " + this.task.id);

@@ -8,31 +8,29 @@
   <router-view />
 </template>
 
-
 <script>
 export default {
-  name: 'App',
+  name: "App",
 
   data() {
     return {
-      loggedIn : false
-    }
+      loggedIn: false,
+    };
   },
-  
+
   created() {
-    this.$store.dispatch('getTasks')
+    this.$store.dispatch("getTasks");
   },
-}
+};
 </script>
 
-
 <style>
-@import url('https://fonts.googleapis.com/css?family=Quicksand:500');
-@import url('./assets/foundation.min.css');
-@import url('./assets/foundation-icons.css');
+@import url("https://fonts.googleapis.com/css?family=Quicksand:500");
+@import url("./assets/foundation.min.css");
+@import url("./assets/foundation-icons.css");
 
 #app {
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
 }
 #nav {
   text-align: center;
@@ -45,4 +43,3 @@ export default {
   text-decoration: none;
 }
 </style>
-

@@ -10,19 +10,18 @@ const routes = [
   {
     path: "/stats",
     name: "Stats",
-    component: () =>
-      import("../views/Stats.vue"),
+    component: () => import("../views/Stats.vue"),
   },
   {
     path: "/tasks/:id",
     name: "Task",
-    component: () => import("../views/Task.vue")
+    component: () => import("../views/Task.vue"),
   },
   {
     path: "/:pathMatch(.*)*",
     name: "not-found",
-    component: () => import("../views/NotFound.vue")
-  }
+    component: () => import("../views/NotFound.vue"),
+  },
 ];
 
 const router = createRouter({

@@ -7,11 +7,15 @@
         <i class="fi-list-thumbnails">Összes</i>
       </div>
       <div class="column small-5 w2">
-        <h2>{{ $store.state.tasks.filter(task => task.completed).length }}</h2>
+        <h2>
+          {{ $store.state.tasks.filter((task) => task.completed).length }}
+        </h2>
         <i class="fi-list-thumbnails">Kész</i>
       </div>
       <div class="column small-5 w3">
-        <h2>{{ $store.state.tasks.filter(task => !task.completed).length }}</h2>
+        <h2>
+          {{ $store.state.tasks.filter((task) => !task.completed).length }}
+        </h2>
         <i class="fi-list-thumbnails">Nyitva</i>
       </div>
       <div class="column small-5 w4">
@@ -23,16 +27,16 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
   name: "Stats",
-  computed: mapGetters(['overdueTasks'])
-}
+  computed: mapGetters(["overdueTasks"]),
+};
 </script>
 
 <style scoped>
-h1{
+h1 {
   background: dodgerblue;
   color: white;
   padding: 1rem;
