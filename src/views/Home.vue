@@ -1,14 +1,16 @@
 <template>
   <div>
     <h1>Home</h1>
-    <form class="row">
+    <form @submit.prevent="addTask" class="row">
       <input
         type="text"
         v-model="task"
         placeholder="Add new task"
-        class="column small-7"
+        required="true"
+        class="column small-5"
       />
-      <input type="date" @blur="addTask" v-model="due" class="column small-5" />
+      <input type="date" v-model="due" required="true" class="column small-5" />
+      <input type="submit" value="OK" class="column small-2" >
     </form>
     <div class="row">
       <div class="column small-12">
@@ -115,6 +117,9 @@ h1 {
 }
 input[type="text"] {
   font-size: 1.5rem;
+  height: 2.5rem;
+}
+input[type="submit"] {  
   height: 2.5rem;
 }
 </style>
